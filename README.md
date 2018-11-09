@@ -1,8 +1,8 @@
 # k8s-item
 
-### 一些应用
 
-> Mysql容器化
+
+#### [ysql容器化](https://github.com/yulibaozi/k8s-item/tree/master/mysql-container)
 
 基本信息
 > OS Version
@@ -18,4 +18,4 @@ bash-4.2$ mysql -V
 mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper
 ```
 
-> fluentd和fluent-bit日志收集
+#### [fluentd和fluent-bit日志收集](https://github.com/yulibaozi/k8s-item/tree/master/fluentd-bit)
