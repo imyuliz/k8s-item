@@ -1,8 +1,9 @@
-# k8s-item
+k8s-item
+ ---
 
 
 
-#### [ysql容器化](https://github.com/yulibaozi/k8s-item/tree/master/mysql-container)
+#### [Mysql容器化](https://github.com/yulibaozi/k8s-item/tree/master/mysql-container)
 
 基本信息
 > OS Version
