@@ -69,6 +69,8 @@ COPY ./root-common /
 COPY ./s2i-common/bin/ $STI_SCRIPTS_PATH
 COPY ./root /
 
+RUN chgrp -R mysql /var/lib/mysql/data && chown -R mysql /var/lib/mysql/data
+RUN chmod 777 /var/lib/mysql/
 # this is needed due to issues with squash
 # when this directory gets rm'd by the container-setup
 # script.
