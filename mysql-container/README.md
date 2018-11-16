@@ -30,6 +30,25 @@ mysql> show variables like '%storage_engine%';
 +----------------------------------+--------+
 
 ```
+### 镜像
+
+> master
+
+```
+cd mysql-container/custom-master
+docker build . -t mysql-master:5.7
+
+docker run -d  -e MYSQL_USER=repl -e MYSQL_PASSWORD=repl1234  -e MYSQL_DATABASE=test  -p 3306:3306  mysql-master:5.7
+```
+
+> slave
+
+```
+cd mysql-container/custom-slave
+docker build . -t mysql-slave:5.7
+
+docker run -d  -e MYSQL_USER=repl -e MYSQL_PASSWORD=repl1234  -e MYSQL_DATABASE=test  -p 3306:3306  mysql-slave:5.7
+```
 
 ### 参考资料
 
@@ -43,7 +62,10 @@ mysql> show variables like '%storage_engine%';
 
 - [张磊Sts第20节](https://time.geekbang.org/column/article/41217)
 - [张磊Sts第二节所用到的yaml](https://github.com/oracle/kubernetes-website/blob/master/docs/tasks/run-application/mysql-statefulset.yaml)
-
+- [mysql主从配置指定端口](https://blog.csdn.net/zwj2008881946/article/details/79479800)
+- [MySQL在一台db服务器上面如何启动多个实例](https://blog.csdn.net/mchdba/article/details/11162037)
+- [mysql多端口实现多个实例以及mysqld_multi管理](http://www.webyang.net/Html/web/article_311.html)
+- [xtrabackup备份](http://www.zsythink.net/archives/1469)
 
 ### 常用的启动命令
 ```
