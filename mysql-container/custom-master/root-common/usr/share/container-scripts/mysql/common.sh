@@ -161,6 +161,8 @@ EOSQL
     log_info "Creating user specified by MYSQL_USER (${MYSQL_USER}) ..."
 mysql $mysql_flags <<EOSQL
     CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+    grant replication slave on *.* to 'repl'@'%' identified by 'repl1234' ;
+    FLUSH PRIVILEGES;
 EOSQL
   fi
 
