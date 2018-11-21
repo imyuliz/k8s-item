@@ -45,7 +45,7 @@ RUN yum install -y yum-utils && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all && \
-    mkdir -p /var/lib/mysql/data && chown -R mysql.0 /var/lib/mysql && \
+    mkdir -p /var/lib/mysql/data && chown -R mysql.0 /var/lib/mysql/data && \
     test "$(id mysql)" = "uid=27(mysql) gid=27(mysql) groups=27(mysql)"
 
 # RUN mkdir -p /data/mysql/mysql3316/data && \
@@ -75,7 +75,7 @@ RUN chmod 777 /var/lib/mysql/
 # when this directory gets rm'd by the container-setup
 # script.
 # Also reset permissions of filesystem to default values
-RUN mkdir -p /var/lib/mysql/logs && chown 777 /var/lib/mysql/logs
+RUN mkdir -p /var/lib/mysql/logs && chown -R mysql.0 /var/lib/mysql/logs
 RUN rm -rf /etc/my.cnf.d/* && \
     /usr/libexec/container-setup && \
     rpm-file-permissions
