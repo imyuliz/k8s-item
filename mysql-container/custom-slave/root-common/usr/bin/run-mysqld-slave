@@ -23,7 +23,7 @@ log_info "The 'slave' server-id is ${MYSQL_SERVER_ID}"
 # pre-init files
 process_extending_files ${APP_DATA}/mysql-pre-init/ ${CONTAINER_SCRIPTS_PATH}/pre-init/
 
-if [ ! -e "${MYSQL_DATADIR}" ]; then
+if [ ! -e "${MYSQL_DATADIR}/mysql" ]; then
   # Initialize MySQL database and wait for the MySQL master to accept
   # connections.
   initialize_database "$@"
@@ -34,7 +34,7 @@ CHANGE MASTER TO MASTER_HOST='${MYSQL_MASTER_SERVICE_NAME}',MASTER_USER='${MYSQL
 EOSQL
 
   init files
-  process_extending_files ${APP_DATA}/mysql-init/ ${CONTAINER_SCRIPTS_PATH}/init/
+  # process_extending_files ${APP_DATA}/mysql-init/ ${CONTAINER_SCRIPTS_PATH}/init/
 
   # Restart the MySQL server with public IP bindings
   shutdown_local_mysql
@@ -42,7 +42,7 @@ fi
 
 unset_env_vars
 log_volume_info $MYSQL_DATADIR
-log_info 'Running final exec -- Only MySQL server logs after this point'
 log_info '222'
+log_info 'Running final exec -- Only MySQL server logs after this point'
 exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE \
   --report-host=$(hostname -I) "$@" 2>&1
