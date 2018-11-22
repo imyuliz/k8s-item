@@ -23,25 +23,26 @@ log_info "The 'slave' server-id is ${MYSQL_SERVER_ID}"
 # pre-init files
 process_extending_files ${APP_DATA}/mysql-pre-init/ ${CONTAINER_SCRIPTS_PATH}/pre-init/
 
-# if [ ! -e "${MYSQL_DATADIR}/mysql" ]; then
+if [ ! -e "${MYSQL_DATADIR}/mysql" ]; then
   # Initialize MySQL database and wait for the MySQL master to accept
   # connections.
-  # initialize_database "$@"
+  initialize_database "$@"
   wait_for_mysql_master
-  log_info 'change mastering'
+  # log_info 'change mastering'
   mysql $mysql_flags <<EOSQL
 CHANGE MASTER TO MASTER_HOST='${MYSQL_MASTER_SERVICE_NAME}',MASTER_USER='${MYSQL_MASTER_USER}', MASTER_PASSWORD='${MYSQL_MASTER_PASSWORD}', MASTER_AUTO_POSITION = 1;
 EOSQL
 
-  # init files
+  init files
   # process_extending_files ${APP_DATA}/mysql-init/ ${CONTAINER_SCRIPTS_PATH}/init/
 
   # Restart the MySQL server with public IP bindings
-  # shutdown_local_mysql
-# fi
+  shutdown_local_mysql
+fi
 
 unset_env_vars
 log_volume_info $MYSQL_DATADIR
 log_info 'Running final exec -- Only MySQL server logs after this point'
+log_info '222'
 exec ${MYSQL_PREFIX}/libexec/mysqld --defaults-file=$MYSQL_DEFAULTS_FILE \
   --report-host=$(hostname -I) "$@" 2>&1
