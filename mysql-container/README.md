@@ -50,6 +50,12 @@ docker build . -t mysql-slave:5.7
 docker run -d  -e MYSQL_USER=repl -e MYSQL_PASSWORD=repl1234  -e MYSQL_DATABASE=test  -p 3306:3306  mysql-slave:5.7
 ```
 
+### Master的特殊性
+
+
+1. 默认会创建用户repl(密码是:repl1234)作为主从复制复制用户
+
+
 ### 参考资料
 
 > 镜像相关资料
