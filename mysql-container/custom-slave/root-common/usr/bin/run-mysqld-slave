@@ -23,7 +23,7 @@ log_info "The 'slave' server-id is ${MYSQL_SERVER_ID}"
 # pre-init files
 process_extending_files ${APP_DATA}/mysql-pre-init/ ${CONTAINER_SCRIPTS_PATH}/pre-init/
 
-if [ ! -e "${MYSQL_DATADIR}/mysql" ]; then
+if [ ! -e "${MYSQL_DATADIR}" ]; then
   # Initialize MySQL database and wait for the MySQL master to accept
   # connections.
   initialize_database "$@"
