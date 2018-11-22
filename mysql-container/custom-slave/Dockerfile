@@ -85,4 +85,4 @@ RUN rm -rf /etc/my.cnf.d/* && \
 USER 27
 
 ENTRYPOINT ["container-entrypoint"]
-CMD ["run-mysqld"]
+CMD ["mysqld-slave"]
