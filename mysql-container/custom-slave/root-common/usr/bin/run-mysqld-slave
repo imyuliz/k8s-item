@@ -28,7 +28,7 @@ process_extending_files ${APP_DATA}/mysql-pre-init/ ${CONTAINER_SCRIPTS_PATH}/pr
   # connections.
   # initialize_database "$@"
   wait_for_mysql_master
-
+  log_info 'change mastering'
   mysql $mysql_flags <<EOSQL
 CHANGE MASTER TO MASTER_HOST='${MYSQL_MASTER_SERVICE_NAME}',MASTER_USER='${MYSQL_MASTER_USER}', MASTER_PASSWORD='${MYSQL_MASTER_PASSWORD}', MASTER_AUTO_POSITION = 1;
 EOSQL
