@@ -73,7 +73,6 @@ COPY ./root /
 # when this directory gets rm'd by the container-setup
 # script.
 # Also reset permissions of filesystem to default values
-RUN mkdir -p /var/lib/mysql/logs && chown -R mysql.0 /var/lib/mysql/logs
 RUN rm -rf /etc/my.cnf.d/* && \
     /usr/libexec/container-setup && \
     rpm-file-permissions
